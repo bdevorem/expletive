@@ -23,8 +23,8 @@ Python x.x.x required
 - [ ] add advanced functionalities  
 
 ##Contributors
-[Breanna Devore-McDonald](breanna-devore-mcdonald.herokuapp.com)  
-[Nicholas Jones](www.nicholascjones.com)  
+[Breanna Devore-McDonald](http://breanna-devore-mcdonald.herokuapp.com)  
+[Nicholas Jones](http://www.nicholascjones.com)  
 
 ##Sources
 http://beza1e1.tuxen.de/articles/accidentally_turing_complete.html
