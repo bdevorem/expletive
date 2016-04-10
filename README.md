@@ -1,8 +1,8 @@
-3xpl!c&t!v3 
+xpl3t!v3 
 ===========
 
 An especially esoteric programming language with basic functionality.
-Read: explicative  
+Read: expletive  
 Python x.x.x required  
 
 ##Grammar
