@@ -18,18 +18,18 @@ rules).
 
 ##Usage
 Define an alphabet:&nbsp;&nbsp;&nbsp;@|?h {}  
-\* Define halting symbols:&nbsp;h@|+ {} 
+\* Define halting symbols:&nbsp;h@|+ {}  
 Define rules:&nbsp;&nbsp;&nbsp;r#|3 {}  
   
 \* unnecessary  
 
 ##Examples
 ```
-@|?h {a b c d}			* alph = a, b, c, d
-h@|+ {H} 				* halt = H
+@|?h {a b c d}				* alph = a, b, c, d
+h@|+ {H} 					* halt = H
 r#|3 {a} {ccbaH} 		* rule = a --> ccbaH
-r#|3 {b} {cca} 			* rule = b --> cca
-r#|3 {c} {cc} 			* rule = c --> cc
+r#|3 {b} {cca} 				* rule = b --> cca
+r#|3 {c} {cc} 				* rule = c --> cc
 ```
 
 ##To Do
