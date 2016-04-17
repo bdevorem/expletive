@@ -5,7 +5,7 @@ An especially esoteric programming language for the Turing-complete
 2-tag system.  
 Read: expletive  
 Python 2.x.x required  
-Currently: **unstable**
+Currently: **stable**
 
 ##Grammar
 xpl3t!v3 programs are based on Emil Leon Post's tag system from
@@ -17,25 +17,25 @@ of symbols get pushed onto the back (predetermined by user-specified
 rules).  
 
 ##Usage
-Define an alphabet: 		@|?h {}  
-*Define halting symbols: 	h@|+ {}  
-Define rules:				r#|3 {}  
+Define an alphabet:&nbsp;&nbsp;&nbsp;@|?h {}  
+\* Define halting symbols:&nbsp;h@|+ {} 
+Define rules:&nbsp;&nbsp;&nbsp;r#|3 {}  
   
-* unnecessary  
+\* unnecessary  
 
 ##Examples
 ```
-@|?h {a b c d}      * alph = a, b, c, d
-h@|+ {H}            * halt = H
-r#|3 {a} {ccbaH}    * rule = a --> ccbaH
-r#|3 {b} {cca}      * rule = b --> cca
-r#|3 {c} {cc}       * rule = c --> cc
+@|?h {a b c d}			* alph = a, b, c, d
+h@|+ {H} 				* halt = H
+r#|3 {a} {ccbaH} 		* rule = a --> ccbaH
+r#|3 {b} {cca} 			* rule = b --> cca
+r#|3 {c} {cc} 			* rule = c --> cc
 ```
 
 ##To Do
 - [x] start  
 - [x] determine functionality of language  
-- [ ] write interpreter
+- [x] write interpreter
 
 ##Future Work
 - [ ] add site?
