@@ -30,7 +30,7 @@ lines = []
 ### Open file and read in data
 try:
 	with open(prog) as input_file:
-    	for i, line in enumerate(input_file):
+		for i, line in enumerate(input_file):
 			lines.append(line)
         	
 except IOError as e:
@@ -46,19 +46,43 @@ for line in lines:
 	line = line.replace("}", "").split("{")
 	
 	if line[0].strip() == '@|?h':
+		comment = False
 		for sym in line[1].replace(" ", ""):
-			alph.append(sym)
+			if sym == "*":
+				comment = True
+			if comment is False:
+				alph.append(sym)
 
 	elif line[0].strip() == 'h@|+':
+		comment = False
 		for sym in line[1].replace(" ", ""):
-			halt.append(sym)
+			if sym == "*":
+				comment = True
+			if comment is False:
+				halt.append(sym)
 
 	elif line[0].strip() == 'r#|3':
-		rules[line[1].strip()] = line[2].strip()
+		r = ""
+		for sym in line[2]:
+			if sym == "*":
+				break
+			r = r + sym
+		rules[line[1].strip()] = r 
 
 	elif line[0].strip() == 'n?#+':
 		for sym in line[1].strip():
 			tape.put(sym)
+
+#print "Test\n------------"
+#print "Alph = "
+#for sym in alph:
+#	print sym,
+#print "\nHalt = "
+#for sym in halt:
+#	print sym,
+#print "\nRules = "
+#for key, val in rules.iteritems():
+#	print key + " --> " + val
 
 ### Operate on queue
 
