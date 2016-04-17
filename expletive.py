@@ -22,6 +22,22 @@
 import sys
 import Queue
 
+
+def test():
+	print "Test\n------------"
+	print "Alph = "
+	for sym in alph:
+		print sym,
+	print "\n\nHalt = "
+	for sym in halt:
+		print sym,
+	print "\n\nRules = "
+	for key, val in rules.iteritems():
+		print key + " --> " + val
+	print "\nInput = "
+	for elem in list(tape.queue):
+		print elem,
+
 tape = Queue.Queue() # 2-tag queue, turing-tape
 prog = sys.argv[1] # user's program
 # print prog
@@ -66,27 +82,39 @@ for line in lines:
 		for sym in line[2]:
 			if sym == "*":
 				break
-			r = r + sym
+			if sym is not " ":
+				r = r + sym
 		rules[line[1].strip()] = r 
 
 	elif line[0].strip() == 'n?#+':
 		for sym in line[1].strip():
-			tape.put(sym)
+			if sym == "*":		
+				break
+			if sym is not " ":
+				tape.put(sym)
 
-#print "Test\n------------"
-#print "Alph = "
-#for sym in alph:
-#	print sym,
-#print "\nHalt = "
-#for sym in halt:
-#	print sym,
-#print "\nRules = "
-#for key, val in rules.iteritems():
-#	print key + " --> " + val
+test()
 
 ### Operate on queue
+print "\n"
+while not tape.empty():
+	#for elem in list(tape.queue):
+	#	print elem,
+	#	#pass
+	#print "\n---------\n"
 
+	sym = tape.get()
 
+	if sym in halt:
+		break
+	if tape.qsize() < 2:
+		break
+
+	if sym in rules:
+		for elem in rules[sym]:
+			if elem is not " ":
+				tape.put(elem)
+	sym = tape.get()
 
 	
 	
