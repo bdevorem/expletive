@@ -1,26 +1,44 @@
 xpl3t!v3 
 ===========
 
-An especially esoteric programming language with basic functionality.
+An especially esoteric programming language for the Turing-complete 
+2-tag system.  
 Read: expletive  
-Python x.x.x required  
+Python 2.x.x required  
+Currently: **unstable**
 
 ##Grammar
+xpl3t!v3 programs are based on Emil Leon Post's tag system from
+1943. Tag systems are Turing-complete deterministic computational 
+models using a single queue as the Turing Machine 'tape'. In 
+xpl3t!v3, 2-tag systems are used: when one symbol is read, two get
+popped off from the beginning of the queue, and a specific amount 
+of symbols get pushed onto the back (predetermined by user-specified
+rules).  
 
 ##Usage
+Define an alphabet: 		@|?h {}  
+*Define halting symbols: 	h@|+ {}  
+Define rules:				r#|3 {}  
+  
+* unnecessary  
 
 ##Examples
+```
+@|?h {a b c d}      * alph = a, b, c, d
+h@|+ {H}            * halt = H
+r#|3 {a} {ccbaH}    * rule = a --> ccbaH
+r#|3 {b} {cca}      * rule = b --> cca
+r#|3 {c} {cc}       * rule = c --> cc
+```
 
 ##To Do
-- [ ] start  
-- [ ] determine functionality of language  
-- [ ] create grammar  
-- [ ] write lexer and parser  
-- [ ] write python converter?
+- [x] start  
+- [x] determine functionality of language  
+- [ ] write interpreter
 
 ##Future Work
 - [ ] add site?
-- [ ] add advanced functionalities  
 
 ##Contributors
 [Breanna Devore-McDonald](http://breanna-devore-mcdonald.herokuapp.com)  
