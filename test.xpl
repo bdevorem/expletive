@@ -1,4 +1,5 @@
-
+* Test.xpl
+* Sample from tag system wiki
 
 @|?h {a b c d} 		* alph =
 h@|+ {H}            * halt =

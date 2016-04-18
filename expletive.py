@@ -33,7 +33,7 @@ def test():
 		print sym,
 	print "\n\nRules = "
 	for key, val in rules.iteritems():
-		print key + " --> " + val
+		print key + " --> " + val,
 	print "\nInput = "
 	for elem in list(tape.queue):
 		print elem,
@@ -79,11 +79,10 @@ for line in lines:
 
 	elif line[0].strip() == 'r#|3':
 		r = ""
-		for sym in line[2]:
+		for sym in line[2].strip().rstrip():
 			if sym == "*":
 				break
-			if sym is not " ":
-				r = r + sym
+			r = r + sym
 		rules[line[1].strip()] = r 
 
 	elif line[0].strip() == 'n?#+':
@@ -93,10 +92,10 @@ for line in lines:
 			if sym is not " ":
 				tape.put(sym)
 
-test()
+#test()
 
 ### Operate on queue
-print "\n"
+#print "\n"
 while not tape.empty():
 	#for elem in list(tape.queue):
 	#	print elem,
@@ -116,6 +115,10 @@ while not tape.empty():
 				tape.put(elem)
 	sym = tape.get()
 
+### Display resulting queue
+#print "Resulting tape:"
+for elem in list(tape.queue):
+	print elem,
 	
 	
 

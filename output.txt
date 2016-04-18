@@ -1,0 +1,34 @@
+Test
+------------
+Alph = 
+a b c d 		
+
+Halt = 
+H 
+
+Rules = 
+a --> ccbaH
+c --> cc
+b --> cca
+
+Input = 
+b a a 
+
+b a a 
+---------
+
+a c c a 
+---------
+
+c a c c b a H 
+---------
+
+c c b a H c c 
+---------
+
+b a H c c c c 
+---------
+
+H c c c c c c a 
+---------
+
