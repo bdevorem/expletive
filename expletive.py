@@ -3,8 +3,7 @@
 # xpl3t!v3 interpreter
 # Author: Breanna Devore-McDonald
 # Usage: 
-#		chmod +x expletive.py
-#		./expletive.py [program.xpl]
+#		python expletive.py [program.xpl]
 
 # Program needs to define input alphabet.
 # Can also provide halting symbol, if no
