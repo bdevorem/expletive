@@ -1,9 +1,9 @@
-#!/usr/bin/python2
+#!/usr/local/bin/python
 
 # xpl3t!v3 interpreter
 # Author: Breanna Devore-McDonald
 # Usage: 
-#		python expletive.py [program.xpl]
+#		./expletive.py [program.xpl]
 
 # Program needs to define input alphabet.
 # Can also provide halting symbol, if no
@@ -93,6 +93,11 @@ for line in lines:
 
 	elif line[0].strip() == '+|+13':
 		print line[1].strip()
+
+""" * considering a counting tape to solve counting problems *
+	elif line[0].strip() == 'c0#n+':
+		print len(line[1].strip())
+"""
 
 #test()
 
