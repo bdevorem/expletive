@@ -92,7 +92,7 @@ for line in lines:
 			if sym is not " ":
 				tape.put(sym)
 
-	elif line[0].strip() == '?4|n+':
+	elif line[0].strip() == '+|+13':
 		print line[1].strip()
 
 #test()
