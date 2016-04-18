@@ -92,6 +92,9 @@ for line in lines:
 			if sym is not " ":
 				tape.put(sym)
 
+	elif line[0].strip() == '?4|n+':
+		print line[1].strip()
+
 #test()
 
 ### Operate on queue
