@@ -1,5 +1,5 @@
 * infinite.xpl
-* Infinite Loop test program
+* infinitely looping program
 
 @|?h {a} 
 h@|+ {H}            * halt =
