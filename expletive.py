@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/python2
 
 # xpl3t!v3 interpreter
 # Author: Breanna Devore-McDonald
@@ -21,6 +21,12 @@
 import sys
 import Queue
 
+def _verbose():
+	for elem in list(tape.queue):
+		print elem,
+		#pass
+	print "\n-------------\n"
+
 
 def test():
 	print "Test\n------------"
@@ -39,6 +45,12 @@ def test():
 
 tape = Queue.Queue() # 2-tag queue, turing-tape
 prog = sys.argv[1] # user's program
+
+verbose = False
+if len(sys.argv) > 2:
+	if sys.argv[2] == '-v':
+		verbose = True
+
 # print prog
 lines = []
 
@@ -93,6 +105,7 @@ for line in lines:
 
 	elif line[0].strip() == '+|+13':
 		print line[1].strip()
+		print '\n'
 
 """ * considering a counting tape to solve counting problems *
 	elif line[0].strip() == 'c0#n+':
@@ -104,10 +117,8 @@ for line in lines:
 ### Operate on queue
 #print "\n"
 while not tape.empty():
-	#for elem in list(tape.queue):
-	#	print elem,
-	#	#pass
-	#print "\n---------\n"
+	if verbose:
+		_verbose()
 
 	sym = tape.get()
 
