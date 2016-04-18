@@ -1,7 +1,7 @@
 * infinite.xpl
 * infinitely looping program
 
-@|?h {a} 
-h@|+ {H}            * halt =
+@|?h {a}         * alph =
+h@|+ {H}         * halt =
 r#|3 {a} {aa}    * rule =
-n?#+ {aaa}          * input =
+n?#+ {aaa}       * input =
