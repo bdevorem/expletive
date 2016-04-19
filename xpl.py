@@ -20,6 +20,7 @@
 
 import sys
 import Queue
+import getopt
 
 def _verbose():
 	for elem in list(tape.queue):
@@ -47,9 +48,26 @@ tape = Queue.Queue() # 2-tag queue, turing-tape
 prog = sys.argv[1] # user's program
 
 verbose = False
-if len(sys.argv) > 2:
-	if sys.argv[2] == '-v':
+init = False
+init_config = ""
+
+#print 'ARGV:', sys.argv[1:]
+
+options, remainder = getopt.getopt(sys.argv[2:], 'i:v', ['initial=', 
+                                                         'verbose',
+                                                         ])
+#print 'OPTIONS:', options
+for opt, arg in options:
+	#print opt + " " + arg
+	if opt in ('-i', '--initial'):
+		init = True
+		init_config = arg
+	elif opt in ('-v', '--verbose'):
 		verbose = True
+
+#print 'VERBOSE:', verbose
+#print 'INITIAL:', init_config
+#print 'REMAINING :', remainder
 
 # print prog
 lines = []
@@ -97,11 +115,15 @@ for line in lines:
 		rules[line[1].strip()] = r 
 
 	elif line[0].strip() == 'n?#+':
-		for sym in line[1].strip():
-			if sym == "*":		
-				break
-			if sym is not " ":
-				tape.put(sym)
+		if init is False:
+			for sym in line[1].strip():
+				if sym == "*":		
+					break
+				if sym is not " ":
+					tape.put(sym)
+		else:
+			for elem in init_config:
+				tape.put(elem)
 
 	elif line[0].strip() == '+|+13':
 		print line[1].strip()
