@@ -1,1 +1,1 @@
-web: gunicorn sentiment-wars:app --log-file=-
+web: gunicorn expletive:app --log-file=-
