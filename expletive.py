@@ -105,7 +105,7 @@ for line in lines:
 
 	elif line[0].strip() == '+|+13':
 		print line[1].strip()
-		print '\n'
+		print '-------------'
 
 """ * considering a counting tape to solve counting problems *
 	elif line[0].strip() == 'c0#n+':

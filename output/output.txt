@@ -1,0 +1,41 @@
+hey guys!
+2 3 1 2 6 5 7 8 
+---------
+
+1 2 6 5 7 8 x y z 
+---------
+
+6 5 7 8 x y z a e i o u 
+---------
+
+7 8 x y z a e i o u o o l l 
+---------
+
+x y z a e i o u o o l l a b 
+---------
+
+z a e i o u o o l l a b y y # 
+---------
+
+e i o u o o l l a b y y # h 
+---------
+
+o u o o l l a b y y # h e 
+---------
+
+o o l l a b y y # h e l 
+---------
+
+l l a b y y # h e l l 
+---------
+
+a b y y # h e l l o w 
+---------
+
+y y # h e l l o w o r 
+---------
+
+# h e l l o w o r l d 
+---------
+
+h e l l o w o r l d
