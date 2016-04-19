@@ -20,7 +20,7 @@ rules).
 Define an alphabet:&nbsp;&nbsp;&nbsp;@|?h {}  
 \* Define halting symbols:&nbsp;h@|+ {}  
 Define rules:&nbsp;&nbsp;&nbsp;r#|3 {}  
-\* Print a statement:&nbsp;?4|n+ {}
+\* Define and add a title:&nbsp;+|+1e {}
   
 \* unnecessary  
 
