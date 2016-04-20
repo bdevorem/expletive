@@ -76,6 +76,10 @@
 						is to define an alphabet. This specifies the
 						scope of a program and also ensures that the
 						correct production rules are being performed.
+						If a rule is defined for a symbol that is not
+						in the alphabet, you're lucky and nothing will
+						happen- but this could be the cause of some 
+						bugs in your program.
 						To define an alphabet consisting of only the
 						26 letters of the English alphabet:<br> 
 <code>@|?h {a b c d e f g h i j k l m n o p q r s t u v w x y z}</code><br>
@@ -92,12 +96,19 @@
 						</div><br>
 					<h3><span class="label label-info">Production Rules</span></h3><br>
 					    <div class="container text-left">
-						Once the alphabet and halting rule for the 
-						program is defined, we can move on to the fun
+						Once the alphabet and halting rules for the 
+						program are defined, we can move on to the fun
 						part: how to pop/push! The production rules are
 						the heart of an xpl3t!v3 program: they define how
 						symbols are pushed onto the queue. They do not
-						control how symbols are read or popped, however.
+						control how symbols are read or popped, however-
+						the head of the queue will always be read, the
+						top two symbols will always be popped, and the
+						symbols to be pushed will always go on the back
+						of the queue. Additionally, if a rule is not
+						declared for an alphabet symbol, the interpreter
+						will move on as if the mapping had been to the
+						empty string, epsilon.
 						An example of a production rule for mapping an
 						'a' to 'bcd':<br>
 						<code>r#|3 {a} {bcd}</code><br>
@@ -146,26 +157,60 @@
 				</div>
 			</div>
 		</div>
+
+
+		<!-- Section 3,  -->		
+		<div class="row-fluid">
+			<div class="span12 text-left"> 
+				<h2><span class="label label-success">3. Usage</span></h2><br>
+				<div class="span12">
+					<h3><span class="label label-info">Download</span></h3><br>
+					    <div class="container text-left">
+						xpl3t!v3 programs use an interpreter, written
+						in Python 2 (so make sure you have that 
+						installed!) To download
+						this interpreter and enable execution, run 
+						the following from the
+						command line:<br>
+						<code>curl https://raw.githubusercontent.com/bdevorem/expletive/master/xpl.py > xpl.py</code><br>
+						<code>chmod +x xpl.py</code>
+						</div><br>
+				<div class="span12">
+					<h3><span class="label label-info">Run</span></h3><br>
+					    <div class="container text-left">
+						After downloading the interpreter and writing
+						your program, run from the command line (where
+						your program is <code>test.py</code>, your
+						initial configuration is <code>testing</code>, 
+						and you want it displayed in verbose mode):<br>
+						<code>./xpl.py test.xpl -i testing -v </code>
+						</div><br>
+
+
+				    
+				</div>
+			</div>
+		</div>
 			
 		<!-- Section 3,  -->		
 		<div class="row-fluid">
 			<div class="span12 text-left"> 
-				<h2><span class="label label-success">2. Example Programs</span></h2><br>
+				<h2><span class="label label-success">3. Example Programs</span></h2><br>
 				<div class="span12">
 					<h3><span class="label label-info">helloworld.xpl</span></h3><br>
 					    <div class="container text-left">
 						<pre>* Hello.xpl
 * Prints "helloworld"
 
-@|?h {1 2 3 4 5 6 7 8 a b c d e f g h i j k l m n o p q r s t u v w x y z}
-h@|+ {#}
-+|+13 {hey guys!}
-r#|3 {1} {aeiou}
-r#|3 {2} {xyz}
-r#|3 {3} {klm}
-r#|3 {5} {opq}
-r#|3 {4} {hij}
-r#|3 {x} {yy#}
+@|?h {1 2 3 4 5 6 7 8 a b c d e f g H h i j k l m n o p q r s t u v w x y z}
+h@|+ {H}
++|+13 {Hello world!}
+r#|3 {&#49;} {aeiou}
+r#|3 {&#50;} {xyz}
+r#|3 {&#51;} {klm}
+r#|3 {&#52;} {opq}
+r#|3 {&#53;} {hij}
+r#|3 {&#54;} {yy#}
 r#|3 {z} {h}
 r#|3 {m} {m}
 r#|3 {e} {e}
