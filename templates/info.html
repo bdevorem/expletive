@@ -16,18 +16,29 @@
 </head>
  
 <body>
-    <div class="container">
-    	<!-- Header -->
-        <div class="header">
-            <nav>
-				<ul class="nav nav-pills pull-right">
-                    <li role="presentation"><a href="/">somename</a></li>
-		    		<li role="presentation" class="active"><a href="/info">About</a></li>
-                </ul>
-            </nav>
+<div class="container">
+    <div class="header">
 
-            <h3 class="text-muted">xpl3t!v3</h3>
-        </div>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">xpl3t!v3</a>
+            </div>
+
+           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="/">Docs</a></li>
+                <li><a href="/info">About</a></li>
+            </ul>
+           </div>
+          </div>
+        </nav>
  
         <div class="jumbotron">
             <h1>About the Project</h1>
@@ -38,10 +49,16 @@
  		<!-- Section 1,  -->
         <div class="row-fluid">
             <div class="span12 text-left">
-                <h2><span class="label label-success">section 1</h2>
+                <h2><span class="label label-success">How It All Started</h2>
 				<br>                
 				<p>
-					words about section 1
+					xpl3t!v3 started out as a course project for 
+					<a href="http://www3.nd.edu/~dchiang/">
+					Dr. David Chiang's</a>
+			<a href="https://www3.nd.edu/courses/cse/cse30151.01/www/">
+					Theory of Computing</a> course at the 
+					<a href="https://www.nd.edu/">University
+					of Notre Dame</a>.
 				</p>
             </div>
         </div>
@@ -51,29 +68,16 @@
 		<!-- Section 2,  -->
         <div class="row-fluid">
             <div class="span12 text-left">
-                <h2><span class="label label-success">section 2</h2>
+                <h2><span class="label label-success">The Theory Behind It All</h2>
                 <br>
                 <p>
-                	words about section 2
+                	why is this turing complete?
 				</p>
             </div>
         </div>
 
         <hr>
 	
-		<!-- Section 3,  -->
-        <div class="row-fluid">
-            <div class="span12 text-left">
-                <h2><span class="label label-success">section 3</h2>
-                <br>
-                <p>
-					words about section 3
-                </p>
-            </div>
-        </div>
-
-        <hr>
-
 		<!-- Section 4, author -->
         <div class="row-fluid">
             <div class="span12 text-left">
@@ -109,6 +113,8 @@
     	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     	</div>
+	</div>
+	</div>
   </body>
  
 </html>
