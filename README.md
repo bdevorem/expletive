@@ -17,20 +17,21 @@ of symbols get pushed onto the back (predetermined by user-specified
 rules).  
 
 ##Usage
-Define an alphabet:&nbsp;&nbsp;&nbsp;@|?h {}  
-\* Define halting symbols:&nbsp;h@|+ {}  
-Define rules:&nbsp;&nbsp;&nbsp;r#|3 {}  
-\* Define and add a title:&nbsp;+|+1e {}
-  
-\* unnecessary  
+A program written in xpl3t!v3 needs to have three key things: 
+an input alphabet, rules for each alphabet symbol, and an initial
+configuration. Optionally, a halting symbol can be defined. If one
+is not defined, the program will halt when the length of the queue
+is less than 2 symbols. For more information, check out xpl3t!v3's 
+docs [here](https://expletive.herokuapp.com).
 
-##Examples
+##Example
+A valid xpl3t!v3 program:  
 ```
-@|?h {a b c d}				* alph = a, b, c, d
-h@|+ {H} 					* halt = H
-r#|3 {a} {ccbaH} 		* rule = a --> ccbaH
-r#|3 {b} {cca} 				* rule = b --> cca
-r#|3 {c} {cc} 				* rule = c --> cc
+@|?h {a b c d}  
+h@|+ {H}  
+r#|3 {a} {ccbaH}   
+r#|3 {b} {cca} 	
+r#|3 {c} {cc}  
 ```
 
 ##To Do
@@ -39,7 +40,7 @@ r#|3 {c} {cc} 				* rule = c --> cc
 - [x] write interpreter
 
 ##Future Work
-- [ ] add site?
+- [x] add site?
 
 ##Contributors
 [Breanna Devore-McDonald](http://breanna-devore-mcdonald.herokuapp.com)  

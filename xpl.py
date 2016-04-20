@@ -1,7 +1,9 @@
 #!/usr/bin/env python2
 
+
 # xpl3t!v3 interpreter
 # Author: Breanna Devore-McDonald
+#		  Nicholas Jones
 # Usage: 
 #		./expletive.py [program.xpl]
 
