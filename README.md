@@ -5,7 +5,8 @@ An especially esoteric programming language for the Turing-complete
 2-tag system.  
 Read: expletive  
 Python 2.x.x required  
-Currently: **stable**
+Current release: v0.0
+Developer release: v1.0.0
 
 ##Grammar
 xpl3t!v3 programs are based on Emil Leon Post's tag system from
@@ -22,7 +23,9 @@ an input alphabet, rules for each alphabet symbol, and an initial
 configuration. Optionally, a halting symbol can be defined. If one
 is not defined, the program will halt when the length of the queue
 is less than 2 symbols. For more information, check out xpl3t!v3's 
-docs [here](https://expletive.herokuapp.com).
+docs [here](http://bdevorem.github.io/expletive/).  
+NOTE: site previously hosted at https://expletive.herokuapp.com, 
+now on Github Pages.  
 
 ##Example
 A valid xpl3t!v3 program:  
@@ -43,7 +46,7 @@ r#|3 {c} {cc}
 - [x] add site?
 
 ##Contributors
-[Breanna Devore-McDonald](http://breanna-devore-mcdonald.herokuapp.com)  
+[Breanna Devore-McDonald](http://bdevorem.herokuapp.com)  
 [Nicholas Jones](http://www.nicholascjones.com)  
 
 ##Sources
