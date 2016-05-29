@@ -7,7 +7,7 @@ from token import Token
 
 EOF =  'EOF'
 SYMBOL, L_BRACKET, R_BRACKET = 'SYMBOL', 'L_BRACKET', 'R_BRACKET'
-ALPH, HALT = 'ALPH', 'HALT'
+ALPH, HALT, RULE = 'ALPH', 'HALT', 'RULE'
 
 class Interpreter(object):
 	def __init__(self, text):
@@ -19,6 +19,7 @@ class Interpreter(object):
 		
 		self.alphabet = set()
 		self.halt = ''
+		self.rules = {}
 
 	def advance(self):
 		"""
@@ -49,6 +50,14 @@ class Interpreter(object):
 		self.symbol = self._sym()
 
 		if self.symbol == 'h@|+':
+			return True
+		else:
+			return False
+
+	def _rule(self):
+		self.symbol = self._sym()
+
+		if self.symbol == 'r#|3':
 			return True
 		else:
 			return False
@@ -90,6 +99,12 @@ class Interpreter(object):
 				else:
 					return Token(SYMBOL, self.symbol)
 
+			if self.current_char == 'r':
+				if self._rule():
+					return Token(RULE, "r#|3")
+				else:
+					return Token(SYMBOL, self.symbol)
+
 			if self.current_char is not None:
 				return Token(SYMBOL, self._sym())
 
@@ -111,6 +126,7 @@ class Interpreter(object):
 	#TODO: add support for {} construct
 	#TODO: add complete grammar rules
 	#TODO: if halting sym in alph, default to len<2
+	#TODO: implement queue
 	def expr(self):
 		"""
 		expr -> ALPH SYMBOL
@@ -121,12 +137,22 @@ class Interpreter(object):
         """
 		self.current_token = self.get_next_token()
 
-		# can be ALPH or HALT
+		# get policy
+		# can be ALPH, HALT, RULE
 		policy = self.current_token
 		if policy.type == ALPH:
 			self.eat(ALPH)
 		elif policy.type == HALT:
 			self.eat(HALT)
+		elif policy.type == RULE:
+			self.eat(RULE)
+
+		# get mappings
+		if policy.type == RULE:
+			read = self.current_token
+			self.eat(SYMBOL)
+			
+			self.rules[read] = []
 
 		while True:
 			mapping = self.current_token
@@ -141,6 +167,11 @@ class Interpreter(object):
 					# as declared in lang spec, if more than
 					# one halt sym is declared, go w latest change
 					self.halt = mapping
+				elif policy.type == RULE:
+					self.rules[read].append(mapping)
+
+		for key, val in self.rules.iteritems():
+			print 'key: ' + str(key) + ', val: ' + str(val)
 
 		return self.halt
 
