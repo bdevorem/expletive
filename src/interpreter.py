@@ -7,7 +7,7 @@ from token import Token
 
 EOF =  'EOF'
 SYMBOL, L_BRACKET, R_BRACKET = 'SYMBOL', 'L_BRACKET', 'R_BRACKET'
-ALPH = 'ALPH'
+ALPH, HALT = 'ALPH', 'HALT'
 
 class Interpreter(object):
 	def __init__(self, text):
@@ -17,7 +17,8 @@ class Interpreter(object):
 		self.current_char = self.text[self.pos]
 		self.symbol = ''
 		
-		self.alphabet = []
+		self.alphabet = set()
+		self.halt = ''
 
 	def advance(self):
 		"""
@@ -30,25 +31,29 @@ class Interpreter(object):
 		else:
 			self.current_char = self.text[self.pos]
 
-	def alph(self):
+	def _alph(self):
 		"""
 		Called when current_symbol == '@'
 		Cycles through chars until a space is found, if
 			resulting string == "@|?h", return True
 			Else, the string is of type SYMBOL, return False
 		"""
-		self.symbol = ''
-		while self.current_char is not None \
-				and	self.current_char.isspace() is False:
-			self.symbol += self.current_char
-			self.advance()
+		self.symbol = self._sym()
 
 		if self.symbol == '@|?h':
 			return True
 		else:
-			return False	
+			return False
 
-	def sym(self):
+	def _halt(self):
+		self.symbol = self._sym()
+
+		if self.symbol == 'h@|+':
+			return True
+		else:
+			return False
+
+	def _sym(self):
 		"""
 		Called when current symbol is not space, or "@"
 		Cycles through all non-space, non-EOF chars and
@@ -74,13 +79,19 @@ class Interpreter(object):
 				continue
 
 			if self.current_char == '@':
-				if self.alph():
+				if self._alph():
 					return Token(ALPH, "@|?h")
 				else:
 					return Token(SYMBOL, self.symbol)	
 
+			if self.current_char == 'h':
+				if self._halt():
+					return Token(HALT, "h@|+")
+				else:
+					return Token(SYMBOL, self.symbol)
+
 			if self.current_char is not None:
-				return Token(SYMBOL, self.sym())
+				return Token(SYMBOL, self._sym())
 
 		return Token(EOF, None)
 
@@ -99,6 +110,7 @@ class Interpreter(object):
 	
 	#TODO: add support for {} construct
 	#TODO: add complete grammar rules
+	#TODO: if halting sym in alph, default to len<2
 	def expr(self):
 		"""
 		expr -> ALPH SYMBOL
@@ -109,9 +121,12 @@ class Interpreter(object):
         """
 		self.current_token = self.get_next_token()
 
-		# start with ALPH
+		# can be ALPH or HALT
 		policy = self.current_token
-		self.eat(ALPH)
+		if policy.type == ALPH:
+			self.eat(ALPH)
+		elif policy.type == HALT:
+			self.eat(HALT)
 
 		while True:
 			mapping = self.current_token
@@ -120,9 +135,14 @@ class Interpreter(object):
 				break
 			else:
 				self.eat(SYMBOL)
-				self.alphabet.append(mapping)
+				if policy.type == ALPH:
+					self.alphabet.add(mapping)
+				elif policy.type == HALT:
+					# as declared in lang spec, if more than
+					# one halt sym is declared, go w latest change
+					self.halt = mapping
 
-		return self.alphabet
+		return self.halt
 
 if __name__ == '__main__':
 
