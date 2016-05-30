@@ -3,6 +3,7 @@
 EOF = 'EOF'
 SYMBOL, L_BRACKET, R_BRACKET = 'SYMBOL', 'L_BRACKET', 'R_BRACKET'
 ALPH, HALT, RULE = 'ALPH', 'HALT', 'RULE'
+INPUT, TITLE = 'INPUT', 'TITLE'
 
 class Token(object):
     def __init__(self, type, value):
