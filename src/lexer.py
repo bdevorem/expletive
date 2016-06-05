@@ -112,6 +112,9 @@ class Lexer(object):
 				else:
 					return Token(SYMBOL, self.symbol)
 
+			if self.current_char == '*':
+				return Token(COMMENT, "*")
+
 			if self.current_char is not None:
 				return Token(SYMBOL, self._sym())
 

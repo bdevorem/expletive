@@ -5,7 +5,7 @@ An especially esoteric programming language for the Turing-complete
 2-tag system.  
 Read: expletive  
 Python 2.x.x required  
-Current release: v0.0
+Current release: v0.0  
 Developer release: v1.0.0
 
 ##Grammar

@@ -57,6 +57,7 @@ class Interpreter(object):
 		
 		# get policy
 		# can be ALPH, HALT, RULE
+		#TODO: refactor to lower if statement count
 		policy = self.current_token
 		if policy.type == ALPH:
 			self.eat(ALPH)
@@ -66,6 +67,9 @@ class Interpreter(object):
 			self.eat(RULE)
 		elif policy.type == TITLE:
 			self.eat(TITLE)
+		elif policy.type == COMMENT:
+			self.eat(COMMENT)
+			return
 
 		# get mappings
 		if policy.type == RULE:
