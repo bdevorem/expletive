@@ -3,7 +3,7 @@ from token import Token
 EOF =  'EOF'
 SYMBOL, L_BRACKET, R_BRACKET = 'SYMBOL', 'L_BRACKET', 'R_BRACKET'
 ALPH, HALT, RULE = 'ALPH', 'HALT', 'RULE'
-INPUT, TITLE = 'INPUT', 'TITLE'
+INPUT, TITLE, COMMENT = 'INPUT', 'TITLE', 'COMMENT'
 
 class Lexer(object):
 	def __init__(self, text):

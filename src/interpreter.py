@@ -9,7 +9,7 @@ from lexer import Lexer
 EOF =  'EOF'
 SYMBOL, L_BRACKET, R_BRACKET = 'SYMBOL', 'L_BRACKET', 'R_BRACKET'
 ALPH, HALT, RULE = 'ALPH', 'HALT', 'RULE'
-INPUT, TITLE = 'INPUT', 'TITLE'
+INPUT, TITLE, COMMENT = 'INPUT', 'TITLE', 'COMMENT'
 
 class Interpreter(object):
 	def __init__(self, lexer):
@@ -40,8 +40,16 @@ class Interpreter(object):
 	#TODO: implement queue
 	def expr(self):
 		"""
-		expr -> ALPH SYMBOL
+		expr -> ALPH | HALT | RULE | INPUT | TITLE | COMMENT
+		ALPH -> @|?h SYMBOLS
+		HALT -> h@|+ SYMBOL
+		RULE -> r#|3 SYMBOL SYMBOLS
+		INPUT -> n?#+ SYMBOLS
+		TITLE -> +|+13 SYMBOLS		
+		COMMENT -> *SYMBOLS
+	
 		SYMBOL -> SYMBOL | epsilon
+		SYMBOLS -> SYMBOL SYMBOL | epsilon
 
 		policy: ALPH | HALT | RULE | INPUT | TITLE | COMMENT | NEWLINE
 		mapping: corresponding grammar rules
@@ -56,6 +64,8 @@ class Interpreter(object):
 			self.eat(HALT)
 		elif policy.type == RULE:
 			self.eat(RULE)
+		elif policy.type == TITLE:
+			self.eat(TITLE)
 
 		# get mappings
 		if policy.type == RULE:
