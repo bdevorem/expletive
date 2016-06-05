@@ -91,11 +91,13 @@ class Interpreter(object):
 					self.halt = mapping
 				elif policy.type == RULE:
 					self.rules[read].append(mapping)
+				elif policy.type == TITLE:
+					self.title = self.title + mapping.value + ' '
 
 		for key, val in self.rules.iteritems():
 			print 'key: ' + str(key) + ', val: ' + str(val)
 
-		return self.halt
+		return self.title
 
 if __name__ == '__main__':
 

@@ -54,6 +54,14 @@ class Lexer(object):
 		else:
 			return False
 
+	def _title(self):
+		self.symbol = self._sym()
+
+		if self.symbol == '+|+13':
+			return True
+		else:
+			return False
+
 	def _sym(self):
 		"""
 		Called when current symbol is not space, or "@"
@@ -79,6 +87,7 @@ class Lexer(object):
 					self.advance()
 					continue
 
+			#TODO: refactor to reduce total if statement count
 			if self.current_char == '@':
 				if self._alph():
 					return Token(ALPH, "@|?h")
@@ -94,6 +103,12 @@ class Lexer(object):
 			if self.current_char == 'r':
 				if self._rule():
 					return Token(RULE, "r#|3")
+				else:
+					return Token(SYMBOL, self.symbol)
+
+			if self.current_char == '+':
+				if self._title():
+					return Token(TITLE, "+|+13")
 				else:
 					return Token(SYMBOL, self.symbol)
 
