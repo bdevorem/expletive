@@ -5,7 +5,7 @@ An especially esoteric programming language for the Turing-complete
 2-tag system.  
 Read: expletive  
 Python 2.x.x required  
-Current release: v0.0
+Current release: v0.0  
 Developer release: v1.0.0
 
 ##Grammar
@@ -18,9 +18,10 @@ of symbols get pushed onto the back (predetermined by user-specified
 rules).  
 
 ##Usage
-A program written in xpl3t!v3 needs to have three key things: 
-an input alphabet, rules for each alphabet symbol, and an initial
-configuration. Optionally, a halting symbol can be defined. If one
+A program written in xpl3t!v3 needs to have four key things: 
+an input alphabet, rules for each alphabet symbol, an initial
+configuration, and a careful attention to whitespace. Optionally, 
+a halting symbol can be defined. If one
 is not defined, the program will halt when the length of the queue
 is less than 2 symbols. For more information, check out xpl3t!v3's 
 docs [here](http://bdevorem.github.io/expletive/).  
@@ -30,15 +31,14 @@ now on Github Pages.
 ##Example
 A valid xpl3t!v3 program:  
 ```
-@|?h {a b c d}  
-h@|+ {H}  
-r#|3 {a} {ccbaH}   
-r#|3 {b} {cca} 	
-r#|3 {c} {cc}  
+@|?h a b c d  
+h@|+ H  
+r#|3 a c c b a H   
+r#|3 b c c a  
+r#|3 c c c  
 ```
 
 ##To Do
-- [x] start  
 - [x] determine functionality of language  
 - [x] write interpreter
 
