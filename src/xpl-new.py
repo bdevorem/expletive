@@ -45,15 +45,20 @@ if __name__ == '__main__':
 		except IOError as e:
 			print str(e)
 
+		#TODO: make this less hacky
+		if init:
+			config_line = "n?#+ "
+			for i in init_config:
+				config_line = config_line + i + " "
+			lines.append(config_line)
 
 		lexer = Lexer(line)
 		interpreter = Interpreter(lexer, verbose)
 	
 		for line in lines:
-			lexer = update(line)
-			interpreter = update(lexer)
+			lexer.update(line)
+			interpreter.update(lexer)
 			result = interpreter.expr()
-			print(result)
 
 	except IndexError:
 		################# Interactive Interpreter ##################
@@ -73,6 +78,4 @@ if __name__ == '__main__':
 			lexer.update(line)
 			interpreter.update(lexer)
 			result = interpreter.expr()
-			print(result)
-
 	

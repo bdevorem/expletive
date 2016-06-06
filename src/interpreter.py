@@ -14,7 +14,7 @@ INPUT, TITLE, COMMENT = 'INPUT', 'TITLE', 'COMMENT'
 
 
 class Interpreter(object):
-	def __init__(self, lexer, verbose=False):
+	def __init__(self, lexer, verbose=False, config=None):
 		self.lexer = lexer
 		self.current_token = self.lexer.get_next_token()
 
@@ -24,6 +24,12 @@ class Interpreter(object):
 		self.title = ''
 		self.tape = Queue.Queue()
 		self.verbose = verbose
+		
+		if config is not None:
+			self.config_tape(config)
+
+	def config_tape(self, config):
+		pass
 
 	def update(self, lexer):
 		self.lexer = lexer
@@ -38,25 +44,29 @@ class Interpreter(object):
 	#		interpreter? To allow for user debugging?
 	def test(self):
 		print "Test"
-		print "\n----------------\n"
+		print "----------------"
 		
 		print "Title = "
 		print self.title
-		print "\n----------------\n"
+		print "----------------"
+
 		print "Alph = "
 		for sym in self.alphabet:
 			print sym,
-		print "\n----------------\n"
+		print "----------------"
+
 		print "Halt = "
 		print str(self.halt)
-		print "\n----------------\n"
+		print "----------------"
+
 		print "Rules = "
 		for key, val in self.rules.iteritems():
 			try:
 				print str(key._value) + " --> " + str(val._value),
 			except:
 				print str(key) + " --> " + str(val)
-		print "\n----------------\n"
+		print "----------------"
+
 		print "Input = "
 		for elem in list(self.tape.queue):
 			print elem
@@ -101,7 +111,6 @@ class Interpreter(object):
 			raise Exception("Parsing error")
 	
 	#TODO: add support for {} construct
-	#TODO: add complete grammar rules
 	#TODO: if halting sym in alph, default to len<2
 	#TODO: implement queue
 	def expr(self):
@@ -122,7 +131,6 @@ class Interpreter(object):
         """
 		
 		# get policy
-		# can be ALPH, HALT, RULE
 		#TODO: refactor to lower if statement count
 		policy = self.current_token
 		if policy._type == ALPH:
