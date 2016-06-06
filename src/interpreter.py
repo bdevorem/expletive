@@ -5,6 +5,7 @@
 
 from token import Token
 from lexer import Lexer
+import Queue
 
 EOF =  'EOF'
 SYMBOL, L_BRACKET, R_BRACKET = 'SYMBOL', 'L_BRACKET', 'R_BRACKET'
@@ -20,6 +21,25 @@ class Interpreter(object):
 		self.halt = ''
 		self.rules = {}
 		self.title = ''
+		self.tape = Queue.Queue()
+
+	def update(self, lexer):
+		self.lexer = lexer
+		self.current_token = self.lexer.get_next_token()
+
+	def test(self):
+		print "Test\n----------------"
+		print "Alph = "
+		for sym in self.alphabet:
+			print sym.value,
+		print "\n\nHalt = "
+		print str(self.halt.value)
+		print "\n\nRules = "
+		for key, val in self.rules.iteritems():
+			print key.value + " --> " + val.value,
+		print "\nInput = "
+		for elem in list(self.tape.queue):
+			print elem.value
 
 	def eat(self, token_type):
 		"""
@@ -102,20 +122,3 @@ class Interpreter(object):
 			print 'key: ' + str(key) + ', val: ' + str(val)
 
 		return self.title
-
-if __name__ == '__main__':
-
-	while True:
-		try:
-			text = raw_input('xpl> ')
-		except EOFError:
-			break
-
-		if not text:
-			continue
-
-		lexer = Lexer(text)
-		intr = Interpreter(lexer)
-		result = intr.expr()
-		print(result)
-

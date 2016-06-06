@@ -6,13 +6,20 @@ ALPH, HALT, RULE = 'ALPH', 'HALT', 'RULE'
 INPUT, TITLE, COMMENT = 'INPUT', 'TITLE', 'COMMENT'
 
 class Lexer(object):
-	def __init__(self, text):
+	def __init__(self, text=" "):
 		self.text = text
 		self.pos = 0
 		self.current_token = None
 		self.current_char = self.text[self.pos]
 		self.symbol = ''
-   
+
+	def update(self, text):
+		self.text = text
+		self.pos = 0
+		self.current_token = None
+		self.current_char = self.text[self.pos]
+		self.symbol = ''
+ 
 	def advance(self):
 		"""
 		Advance the position pointer and set new current_char
