@@ -80,19 +80,33 @@
 						in the alphabet, you're lucky and nothing will
 						happen- but this could be the cause of some 
 						bugs in your program.
+						<br>
+						One thing to note: whitespace in xpl3t!v3 is
+						extremely important, due to it's esotericism.
+						In xpl3t!v3, you can define your symbols to
+						be anything you want- even symbols consisting
+						of more than one character. You read that right,
+						you can have a symbol that's more than one
+						character in length. Therefore, pay attention
+						to your spacing. Notice in alphabet below that
+						the symbols <code>a</code>, <code>b</code>, and
+						<code>ab</code> are all defined.
 						To define an alphabet consisting of only the
-						26 letters of the English alphabet:<br> 
-<code>@|?h {a b c d e f g h i j k l m n o p q r s t u v w x y z}</code><br>
+						26 letters of the English alphabet, and the
+						symbol <code>ab</code>:<br> 
+<code>@|?h ab a b c d e f g h i j k l m n o p q r s t u v w x y z</code><br>
 						</div><br>
 				    <h3><span class="label label-info">Halt Symbols</span></h3><br>
 					    <div class="container text-left">
 						Unless otherwise declared, an xpl3t!v3 program
 						will halt once the queue reaches a length of 
-						less than two characters. If the programmer has
+						less than two symbols. If the programmer has
 						other ideas in mind, they can declare a halting
 						symbol in which the program will exit once read.
+						Only one halting symbol can be declared, so the
+						most recently-declared will take priority.
 						An example of a halting symbol, 'H':<br>
-						<code>h@|+ {H}</code><br>
+						<code>h@|+ H</code><br>
 						</div><br>
 					<h3><span class="label label-info">Production Rules</span></h3><br>
 					    <div class="container text-left">
@@ -110,8 +124,12 @@
 						will move on as if the mapping had been to the
 						empty string, epsilon.
 						An example of a production rule for mapping an
-						'a' to 'bcd':<br>
-						<code>r#|3 {a} {bcd}</code><br>
+						'a' to the symbols 'b', 'c', and 'd':<br>
+						<code>r#|3 a b c d</code><br>
+						Note that this is different than mapping 'a' to
+						the single symbol 'bcd':
+						<code>r#|3 a bcd</code><br>
+						Have we mentioned whitespace is important?
 						</div><br>
 					<h3><span class="label label-info">Program Title</span></h3><br>
 					    <div class="container text-left">
@@ -120,7 +138,7 @@
 						printed to the user before operations are 
 						performed on the initial configuration. To
 						add a title, simply do the following:<br>
-						<code>+|+13 {This is a Title}</code><br>
+						<code>+|+13 This is a Title</code><br>
 						</div><br>
 					<h3><span class="label label-info">Initial Configuration</span></h3><br>
 					    <div class="container text-left">
@@ -135,16 +153,30 @@
 						command line as a flag during interpretation 
 						using the following:<br>
 						<code>-i abcde</code> or <code>--initial abcde</code>
-						<br>If the user has a very specialized program,
+						<br> However, if the programmer decides to
+						enter their configuration using this method,
+						then their symbols must only be single 
+						characters in length. The reason for this is
+						to avoid confusion with other command line
+						arguments and flags. Therefore, the above
+						configuration would not be the single symbol
+						<code>abcde</code>, it would be the list
+						of single-character symbols <code>a</code>,
+						 <code>b</code>, <code>c</code>, <code>d</code>,
+						 <code>e</code>.
+
+						If the user has a very specialized program,
 						they can enter the intial configuration from
 						within the program like so:<br>
-						<code>n?#+ {abcde} </code><br>
+						<code>n?#+ a b c d e </code><br>
+						Note that this is different from:<br>
+						<code>n?#+ abcde </code><br>
 						</div><br>
 					<h3><span class="label label-info">Comments</span></h3><br>
 					    <div class="container text-left">
 						What's a good program without some comments?
-						In xpl3t!v3, comments are super easy, and can
-						be inserted both inline and wherever:<br>
+						In xpl3t!v3, comments are super easy, but can
+						only be inserted in a line of their own<br>
 						<code>* This is a comment</code><br>
 						</div><br>
 					<h3><span class="label label-info">Verbose</span></h3><br>
@@ -168,22 +200,25 @@
 					    <div class="container text-left">
 						xpl3t!v3 programs use an interpreter, written
 						in Python 2 (so make sure you have that 
-						installed!) To download
-						this interpreter and enable execution, run 
-						the following from the
-						command line:<br>
-						<code>curl https://raw.githubusercontent.com/bdevorem/expletive/master/xpl.py > xpl.py</code><br>
-						<code>chmod +x xpl.py</code>
-						<br><br>
-						Alternatively, you can download the latest
-						release <a href="https://github.com/bdevorem/expletive/releases">here</a>.
+						installed!) To use the language, you must
+						download the latest release of the interpreter
+		<a href="https://github.com/bdevorem/expletive/releases">here</a>.
 						</div><br>
 				<div class="span12">
 					<h3><span class="label label-info">Run</span></h3><br>
 					    <div class="container text-left">
-						After downloading the interpreter and writing
-						your program, run from the command line (where
-						your program is <code>test.py</code>, your
+						After downloading the interpreter, you can 
+						either run the xpl3t!v3 shell or write a
+						program and pass it to the interpreter.
+
+						To start the shell, navigate to the 
+						<code>src/</code> 
+						directory, and type ./xpl.py.
+						
+						To pass in a program written in xpl3t!ve, 
+						run this from the command line 
+						(where
+						your program is <code>test.xpl</code>, your
 						initial configuration is <code>testing</code>, 
 						and you want it displayed in verbose mode):<br>
 						<code>./xpl.py test.xpl -i testing -v </code>
@@ -205,27 +240,27 @@
 						<pre>* Hello.xpl
 * Prints "helloworld"
 
-@|?h {1 2 3 4 5 6 7 8 a b c d e f g H h i j k l m n o p q r s t u v w x y z}
-h@|+ {H}
-+|+13 {Hello world!}
-r#|3 {&#49;} {aeiou}
-r#|3 {&#50;} {xyz}
-r#|3 {&#51;} {klm}
-r#|3 {&#52;} {opq}
-r#|3 {&#53;} {hij}
-r#|3 {&#54;} {yy#}
-r#|3 {z} {h}
-r#|3 {m} {m}
-r#|3 {e} {e}
-r#|3 {6} {ooll}
-r#|3 {o} {l}
-r#|3 {l} {ow}
-r#|3 {7} {ab}
-r#|3 {b} {bcd}
-r#|3 {a} {or}
-r#|3 {8} {1234567}
-r#|3 {y} {ld}
-n?#+ {23126578}</pre>	
+@|?h 1 2 3 4 5 6 7 8 a b c d e f g H h i j k l m n o p q r s t u v w x y z
+h@|+ H
++|+13 Hello world!
+r#|3 &#49; a e i o u
+r#|3 &#50; x y z
+r#|3 &#51; k l m
+r#|3 &#52; o p q
+r#|3 &#53; h i j
+r#|3 &#54; y y #
+r#|3 z h
+r#|3 m m
+r#|3 e e
+r#|3 6 o o l l 
+r#|3 o l
+r#|3 l o w
+r#|3 7 a b
+r#|3 b b c d
+r#|3 a o r
+r#|3 8 1 2 3 4 5 6 7
+r#|3 y l d
+n?#+ 2 3 1 2 6 5 7 8</pre>	
 			
 
 						</div>
@@ -234,24 +269,24 @@ n?#+ {23126578}</pre>
 						<pre>* coins.xpl
 * summation of money values
 
-@|?h {p n d q .}
-+|+13 {hey guys!}
-h@|+ {H}            * halt =
-r#|3 {p} {x}    * rule =
-r#|3 {n} {xxxxx}      * rule =
-r#|3 {d} {xxxxxxxxxx}       * rule =
-r#|3 {q} {xxxxxxxxxxxxxxxxxxxxxxxxx}
-n?#+ {p.p.n.d.H}          * input =</pre>
+@|?h p n d q .
++|+13 hey guys
+h@|+ H            
+r#|3 p x    
+r#|3 n x x x x x  
+r#|3 d x x x x x x x x x x 
+r#|3 q x x x x x x x x x x x x x x x x x x x x x x x x x
+n?#+ p . p . n . d . H</pre>
 						</div>
 					<h3><span class="label label-info">infinite.xpl</span></h3><br>
 					    <div class="container text-left">
 						<pre>* infinite.xpl
 * infinitely looping program
 
-@|?h {a}         * alph =
-h@|+ {H}         * halt =
-r#|3 {a} {aa}    * rule =
-n?#+ {aaa}       * input =</pre>
+@|?h a
+h@|+ H         
+r#|3 a a a 
+n?#+ a a a     </pre>
 						</div>
 				    
 				</div>
