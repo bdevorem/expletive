@@ -3,3 +3,7 @@ __pycache__/
 venv/
 *.swp
 *.swo
+static/
+templates/
+expletive.py
+Procfile
