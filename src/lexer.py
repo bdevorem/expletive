@@ -69,6 +69,15 @@ class Lexer(object):
 		else:
 			return False
 
+	def _input(self):
+		self.symbol = self._sym()
+
+		if self.symbol == 'n?#+':
+			return True
+		else:
+			return False
+
+
 	def _sym(self):
 		"""
 		Called when current symbol is not space, or "@"
@@ -116,6 +125,12 @@ class Lexer(object):
 			if self.current_char == '+':
 				if self._title():
 					return Token(TITLE, "+|+13")
+				else:
+					return Token(SYMBOL, self.symbol)
+
+			if self.current_char == 'n':
+				if self._input():
+					return Token(INPUT, "n?#+")
 				else:
 					return Token(SYMBOL, self.symbol)
 

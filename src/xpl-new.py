@@ -14,13 +14,6 @@ SYMBOL, L_BRACKET, R_BRACKET = 'SYMBOL', 'L_BRACKET', 'R_BRACKET'
 ALPH, HALT, RULE = 'ALPH', 'HALT', 'RULE'
 INPUT, TITLE, COMMENT = 'INPUT', 'TITLE', 'COMMENT'
 
-q = None
-def _verbose():
-	for elem in list(q.queue):
-		print elem.value,
-		#pass
-	print "\n----------------\n"
-
 if __name__ == '__main__':
 	"""
 	Run a shell-like interpreter if no arguments are passed
@@ -54,13 +47,12 @@ if __name__ == '__main__':
 
 
 		lexer = Lexer(line)
-		interpreter = Interpreter(lexer)
+		interpreter = Interpreter(lexer, verbose)
 	
 		for line in lines:
 			lexer = update(line)
 			interpreter = update(lexer)
 			result = interpreter.expr()
-			q = interpreter.tape
 			print(result)
 
 	except IndexError:
